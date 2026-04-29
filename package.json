@@ -2,6 +2,7 @@
   "name": "new-look-group",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack -p 3000",
     "build": "next build",
