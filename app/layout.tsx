@@ -2,51 +2,41 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const clashDisplay = localFont({
+const gtWalsheim = localFont({
   src: [
     {
-      path: "../public/fonts/ClashDisplay-Regular.otf",
+      path: "../public/fonts/GT-Walsheim-Regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/ClashDisplay-Medium.otf",
-      weight: "500",
-      style: "normal",
+      path: "../public/fonts/GT-Walsheim-Regular-Oblique.otf",
+      weight: "400",
+      style: "italic",
     },
     {
-      path: "../public/fonts/ClashDisplay-Semibold.otf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/ClashDisplay-Bold.otf",
+      path: "../public/fonts/GT-Walsheim-Bold.otf",
       weight: "700",
       style: "normal",
     },
   ],
-  variable: "--font-clash-display",
+  variable: "--font-gt-walsheim",
 });
 
-const satoshi = localFont({
+const newLookSupreme = localFont({
   src: [
     {
-      path: "../public/fonts/Satoshi-Regular.otf",
+      path: "../public/fonts/NewLookSupreme-Regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/Satoshi-Medium.otf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Satoshi-Bold.otf",
+      path: "../public/fonts/NewLookSupreme-Bold.otf",
       weight: "700",
       style: "normal",
     },
   ],
-  variable: "--font-satoshi",
+  variable: "--font-new-look-supreme",
 });
 
 export const metadata: Metadata = {
@@ -66,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body
-        className={`${clashDisplay.variable} ${satoshi.variable} antialiased`}
+        className={`${gtWalsheim.variable} ${newLookSupreme.variable} font-sans antialiased`}
       >
         {children}
       </body>

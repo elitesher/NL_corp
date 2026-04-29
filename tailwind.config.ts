@@ -18,8 +18,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["var(--font-heading)", "Georgia", "serif"],
-        body: ["var(--font-body)", "Inter", "sans-serif"],
+        sans: ["var(--font-gt-walsheim)", "system-ui", "sans-serif"],
+        serif: ["var(--font-new-look-supreme)", "Georgia", "serif"],
+        heading: ["var(--font-new-look-supreme)", "Georgia", "serif"],
+        body: ["var(--font-gt-walsheim)", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
