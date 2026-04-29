@@ -337,7 +337,8 @@ export default function HomePage() {
               </div>
             </a>
             {/* Media */}
-            <a id="media" href="#" className="group block relative overflow-hidden scroll-mt-20" data-reveal data-reveal-delay="2">
+            <div id="media" className="scroll-mt-20">
+            <a href="#" className="group block relative overflow-hidden" data-reveal data-reveal-delay="2">
               <div className="overflow-hidden relative aspect-[4/3]">
                 <Image
                   src="/images/media-card.jpg"
@@ -356,6 +357,7 @@ export default function HomePage() {
                 </span>
               </div>
             </a>
+            </div>
           </div>
         </section>
       </main>
