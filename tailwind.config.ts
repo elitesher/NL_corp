@@ -2,7 +2,11 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -14,8 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["'New Look Supreme'", "Georgia", "serif"],
-        body: ["'GT Walsheim'", "Inter", "sans-serif"],
+        heading: ["var(--font-heading)", "Georgia", "serif"],
+        body: ["var(--font-body)", "Inter", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -86,7 +90,7 @@ export default {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "counter": {
+        counter: {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
@@ -95,7 +99,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.6s ease-out forwards",
-        "counter": "counter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        counter: "counter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
     },
   },
