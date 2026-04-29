@@ -6,11 +6,11 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Image from "next/image";
 
 const navLinks = [
-  "About Us",
-  "ESG & Sustainability",
-  "Media",
-  "Careers",
-  "Financial & Business Reporting",
+  { label: "About Us", href: "#about" },
+  { label: "ESG & Sustainability", href: "#esg" },
+  { label: "Media", href: "#media" },
+  { label: "Careers", href: "#careers" },
+  { label: "Financial & Business Reporting", href: "#financials" },
 ];
 
 const stats = [
@@ -92,12 +92,12 @@ export default function HomePage() {
 
           <ul className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
-              <li key={link}>
+              <li key={link.label}>
                 <a
-                  href="#"
+                  href={link.href}
                   className="text-body-s text-foreground/80 hover:text-foreground transition-colors duration-300 tracking-[0.01em] font-body"
                 >
-                  {link}
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -140,7 +140,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== OUR MISSION ===== */}
-        <section className="py-20 md:py-20 bg-background relative overflow-hidden" ref={missionRef}>
+        <section id="about" className="py-20 md:py-20 bg-background relative overflow-hidden scroll-mt-20" ref={missionRef}>
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-20 items-start">
           <div className="lg:col-span-4" data-reveal="left">
@@ -195,7 +195,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== KIND TO OUR CORE ===== */}
-        <section className="relative overflow-hidden" ref={esgRef}>
+        <section id="esg" className="relative overflow-hidden scroll-mt-20" ref={esgRef}>
           <div className="relative w-full min-h-[75vh]">
             <Image
               src="/images/esg-forest.jpg"
@@ -283,7 +283,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== CAREERS ===== */}
-        <section className="bg-background" ref={careersRef}>
+        <section id="careers" className="bg-background scroll-mt-20" ref={careersRef}>
           <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-10 lg:gap-x-16 px-6 md:px-12 lg:px-16 xl:px-24 py-10 md:py-14 items-center">
             <div className="flex flex-col justify-center order-2 lg:order-1 pt-8 lg:pt-0">
               <h2 className="font-heading font-normal text-title-l text-foreground leading-tight" data-reveal="left">
@@ -314,7 +314,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== FINANCIALS & MEDIA SIGNPOSTS ===== */}
-        <section className="bg-nl-ice-white bg-primary-foreground" ref={signpostsRef}>
+        <section id="financials" className="bg-nl-ice-white bg-primary-foreground scroll-mt-20" ref={signpostsRef}>
           <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2">
             {/* Financials */}
             <a href="#" className="group block relative overflow-hidden" data-reveal data-reveal-delay="1">
@@ -337,7 +337,7 @@ export default function HomePage() {
               </div>
             </a>
             {/* Media */}
-            <a href="#" className="group block relative overflow-hidden" data-reveal data-reveal-delay="2">
+            <a id="media" href="#" className="group block relative overflow-hidden scroll-mt-20" data-reveal data-reveal-delay="2">
               <div className="overflow-hidden relative aspect-[4/3]">
                 <Image
                   src="/images/media-card.jpg"
