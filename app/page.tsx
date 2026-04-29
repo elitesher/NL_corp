@@ -1,84 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import { Search, ArrowRight, Leaf, HandHeart, Globe, Mail, ChevronDown, Menu, X } from "lucide-react";
+import { Search, ArrowRight, Leaf, HandHeart, Globe, Mail } from "lucide-react";
 import { FaLinkedinIn, FaTwitter, FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaTiktok } from "react-icons/fa6";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Image from "next/image";
 
-// Navigation data with submenus matching the original site
 const navLinks = [
-  {
-    label: "About Us",
-    href: "#about",
-    columns: [
-      [
-        { label: "Our mission", href: "/about/mission", featured: true },
-        { label: "Meet our team", href: "/about/team" },
-      ],
-      [
-        { label: "Our customers", href: "/about/customers" },
-        { label: "Our people", href: "/about/people" },
-      ],
-      [
-        { label: "Corporate governance", href: "/about/governance" },
-      ],
-    ],
-  },
-  {
-    label: "ESG & Sustainability",
-    href: "#esg",
-    columns: [
-      [
-        { label: "Sustainability Reports", href: "/esg/reports" },
-        { label: "Our Partners", href: "/esg/partners" },
-      ],
-      [
-        { label: "Responsible Business", href: "/esg/responsible-business", featured: true },
-        { label: "Positive Local Impact", href: "/esg/local-impact", featured: true },
-      ],
-      [
-        { label: "Responsible & Circular Product", href: "/esg/circular-product", featured: true },
-        { label: "Governance", href: "/esg/governance", featured: true },
-      ],
-    ],
-  },
-  {
-    label: "Media",
-    href: "#media",
-    columns: [
-      [
-        { label: "Newsroom", href: "/media/newsroom", featured: true },
-      ],
-      [
-        { label: "Multimedia library", href: "/media/library" },
-      ],
-    ],
-  },
-  {
-    label: "Careers",
-    href: "#careers",
-    columns: [
-      [
-        { label: "Our locations", href: "/careers/locations" },
-      ],
-      [
-        { label: "Careers FAQs", href: "/careers/faqs" },
-      ],
-    ],
-  },
-  {
-    label: "Financials and Business Reporting",
-    href: "#financials",
-    columns: [
-      [
-        { label: "Financial highlights", href: "/financials/highlights" },
-      ],
-      [
-        { label: "Reports and publications", href: "/financials/reports" },
-      ],
-    ],
-  },
+  { label: "About Us", href: "#about" },
+  { label: "ESG & Sustainability", href: "#esg" },
+  { label: "Media", href: "#media" },
+  { label: "Careers", href: "#careers" },
+  { label: "Financial & Business Reporting", href: "#financials" },
 ];
 
 const stats = [
@@ -106,130 +38,31 @@ const esgCards = [
 ];
 
 const socialLinks = [
-  { icon: FaLinkedinIn, label: "LinkedIn", href: "#" },
-  { icon: FaTwitter, label: "Twitter", href: "#" },
-  { icon: FaFacebookF, label: "Facebook", href: "#" },
-  { icon: FaInstagram, label: "Instagram", href: "#" },
-  { icon: FaPinterestP, label: "Pinterest", href: "#" },
-  { icon: FaYoutube, label: "YouTube", href: "#" },
-  { icon: FaTiktok, label: "TikTok", href: "#" },
+  { icon: FaLinkedinIn, label: "LinkedIn" },
+  { icon: FaTwitter, label: "Twitter" },
+  { icon: FaFacebookF, label: "Facebook" },
+  { icon: FaInstagram, label: "Instagram" },
+  { icon: FaPinterestP, label: "Pinterest" },
+  { icon: FaYoutube, label: "YouTube" },
+  { icon: FaTiktok, label: "TikTok" },
 ];
 
 const footerNav = [
-  { label: "About Us", href: "/about" },
-  { label: "ESG & Sustainability", href: "/esg" },
-  { label: "Media", href: "/media" },
-  { label: "Careers", href: "/careers" },
-  { label: "Financials and Business Reporting", href: "/financials" },
-  { label: "Contact Us", href: "/contact" },
+  "About Us",
+  "ESG & Sustainability",
+  "Media",
+  "Careers",
+  "Financial & Business Reporting",
+  "Contact Us",
 ];
 
 const footerLegal = [
-  { label: "Terms & conditions", href: "/terms" },
-  { label: "Accessibility", href: "/accessibility" },
-  { label: "Cookies", href: "/cookies" },
-  { label: "Modern slavery statement", href: "/modern-slavery" },
-  { label: "Sitemap", href: "/sitemap" },
+  "T&Cs",
+  "Accessibility",
+  "Cookies",
+  "Modern Slavery",
+  "Sitemap",
 ];
-
-// NavDropdown component for desktop
-function NavDropdown({ item, isOpen, onMouseEnter, onMouseLeave }: {
-  item: typeof navLinks[0];
-  isOpen: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-}) {
-  return (
-    <li
-      className="relative"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      <button
-        className="flex items-center gap-1 text-body-s text-foreground/80 hover:text-foreground transition-colors duration-300 tracking-[0.01em] font-body py-2"
-      >
-        {item.label}
-        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-      
-      {/* Dropdown menu */}
-      <div
-        className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
-          isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-        }`}
-      >
-        <div className="bg-background border border-foreground/10 shadow-lg min-w-[280px] p-6">
-          <div className="flex gap-8">
-            {item.columns.map((column, colIndex) => (
-              <div key={colIndex} className="flex flex-col gap-3">
-                {column.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="flex items-center gap-2 text-body-s text-foreground/70 hover:text-foreground transition-colors duration-200 whitespace-nowrap"
-                  >
-                    {link.label}
-                    {link.featured && (
-                      <ArrowRight className="w-3 h-3" />
-                    )}
-                  </a>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </li>
-  );
-}
-
-// Mobile menu component
-function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [expandedItem, setExpandedItem] = useState<string | null>(null);
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 lg:hidden">
-      <div className="absolute inset-0 bg-foreground/50" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-background overflow-y-auto">
-        <div className="flex items-center justify-between p-6 border-b border-foreground/10">
-          <span className="font-heading text-title-s">Menu</span>
-          <button onClick={onClose} className="p-2 -mr-2">
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-        <nav className="p-6">
-          {navLinks.map((item) => (
-            <div key={item.label} className="border-b border-foreground/10">
-              <button
-                onClick={() => setExpandedItem(expandedItem === item.label ? null : item.label)}
-                className="flex items-center justify-between w-full py-4 text-body-m font-body"
-              >
-                {item.label}
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${expandedItem === item.label ? 'rotate-180' : ''}`} />
-              </button>
-              {expandedItem === item.label && (
-                <div className="pb-4 pl-4 flex flex-col gap-3">
-                  {item.columns.flat().map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      className="text-body-s text-foreground/70 hover:text-foreground transition-colors"
-                      onClick={onClose}
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
-      </div>
-    </div>
-  );
-}
 
 export default function HomePage() {
   const [missionRef] = useScrollReveal();
@@ -240,13 +73,10 @@ export default function HomePage() {
   const [careersRef] = useScrollReveal();
   const [signpostsRef] = useScrollReveal();
 
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-background text-foreground font-body">
       {/* ===== NAVIGATION ===== */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md">
         <nav className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-[72px]">
           <a href="/" className="flex-shrink-0" aria-label="New Look Home">
             <svg width="120" height="24" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-9 md:h-11 w-auto">
@@ -260,40 +90,29 @@ export default function HomePage() {
             </svg>
           </a>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden lg:flex items-center gap-8">
-            {navLinks.map((item) => (
-              <NavDropdown
-                key={item.label}
-                item={item}
-                isOpen={openDropdown === item.label}
-                onMouseEnter={() => setOpenDropdown(item.label)}
-                onMouseLeave={() => setOpenDropdown(null)}
-              />
+          <ul className="hidden lg:flex items-center gap-10">
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  className="text-body-s text-foreground/80 hover:text-foreground transition-colors duration-300 tracking-[0.01em] font-body"
+                >
+                  {link.label}
+                </a>
+              </li>
             ))}
           </ul>
 
-          <div className="flex items-center gap-1">
-            <a href="/search" aria-label="Search" className="p-3 text-foreground/70 hover:text-foreground transition-colors duration-300">
+          <div className="flex items-center gap-0.5">
+            <button aria-label="Search" className="p-3 text-foreground/70 hover:text-foreground transition-colors duration-300">
               <Search className="w-[18px] h-[18px]" strokeWidth={1.5} />
-            </a>
-            <a href="/contact" aria-label="Contact" className="hidden md:flex p-3 text-foreground/70 hover:text-foreground transition-colors duration-300">
+            </button>
+            <button aria-label="Contact" className="p-3 text-foreground/70 hover:text-foreground transition-colors duration-300">
               <Mail className="w-[18px] h-[18px]" strokeWidth={1.5} />
-            </a>
-            {/* Mobile menu button */}
-            <button
-              className="lg:hidden p-3 text-foreground/70 hover:text-foreground transition-colors duration-300"
-              onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open menu"
-            >
-              <Menu className="w-6 h-6" strokeWidth={1.5} />
             </button>
           </div>
         </nav>
       </header>
-
-      {/* Mobile Menu */}
-      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
 
       <main>
         {/* ===== HERO SECTION ===== */}
@@ -314,41 +133,27 @@ export default function HomePage() {
               <br />
               <em className="not-italic text-primary-foreground">&quot;that New Look feeling&quot;</em>
             </h1>
-          </div>
-        </section>
-
-        {/* ===== TAGLINE ===== */}
-        <section className="py-16 md:py-24 bg-background">
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12 text-center">
-            <h2 className="font-heading font-normal text-title-m md:text-title-l text-foreground leading-relaxed max-w-4xl mx-auto">
+            <p className="mt-6 text-body-m md:text-title-s text-white/80 max-w-lg font-body reveal-up-delay font-normal">
               We are the feel-good fashion brand making style accessible and fun so that everyone can experience that New Look feeling.
-            </h2>
+            </p>
           </div>
         </section>
 
         {/* ===== OUR MISSION ===== */}
-        <section id="about" className="py-16 md:py-24 bg-background relative overflow-hidden scroll-mt-20" ref={missionRef}>
+        <section id="about" className="py-20 md:py-20 bg-background relative overflow-hidden scroll-mt-20" ref={missionRef}>
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start">
-              {/* Image */}
-              <div className="lg:col-span-5 relative aspect-[4/5] overflow-hidden" data-reveal="scale">
-                <Image
-                  src="/images/mission-fashion.jpg"
-                  alt="About Us"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Content */}
-              <div className="lg:col-span-6 lg:col-start-7 flex flex-col justify-center" data-reveal="right">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-20 items-start">
+          <div className="lg:col-span-4" data-reveal="left">
                 <h2 className="font-heading font-normal text-title-l md:text-jumbo text-foreground leading-[1.1]">
                   Our Mission
                 </h2>
-                <p className="mt-8 text-body-m text-muted-foreground font-body font-normal leading-relaxed">
+              </div>
+              <div className="lg:col-span-7 lg:col-start-6 flex flex-col justify-center" data-reveal="right">
+                <p className="text-body-m text-muted-foreground font-body font-normal leading-relaxed">
                   As one of the original feel-good fashion brands, our goal is to transform shopping with a digital-first omnichannel experience that stays true to the high street stores our customers first fell in love with.
                 </p>
                 <a
-                  href="/about"
+                  href="#"
                   className="mt-10 link-slide text-body-s font-body font-medium text-foreground hover:text-primary self-start"
                 >
                   About us
@@ -360,28 +165,12 @@ export default function HomePage() {
         </section>
 
         {/* ===== OUR AMBITION / STATS ===== */}
-        <section className="py-16 md:py-24 bg-background relative overflow-hidden" ref={ambitionRef}>
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start">
-              {/* Image */}
-              <div className="lg:col-span-5 relative aspect-[4/5] overflow-hidden order-2 lg:order-1" data-reveal="scale">
-                <Image
-                  src="/images/hero-fashion.jpg"
-                  alt="Our Vision"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Content */}
-              <div className="lg:col-span-6 lg:col-start-7 flex flex-col justify-center order-1 lg:order-2" data-reveal="right">
-                <h2 className="font-heading font-normal text-title-l md:text-jumbo text-foreground leading-snug">
-                  Our ambition is to be the no.1 fashion destination for every body.
-                </h2>
-              </div>
-            </div>
-            
-            {/* Stats */}
-            <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto gap-0">
+        <section className="pt-0 pb-20 md:pb-28 bg-primary-foreground relative overflow-hidden" ref={ambitionRef}>
+          <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10 text-center">
+            <h2 className="font-heading font-normal text-title-l md:text-jumbo text-foreground leading-snug max-w-4xl mx-auto" data-reveal>
+              Our ambition is to be the no.1<br />fashion destination for every body.
+            </h2>
+            <div className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto gap-0">
               {stats.map((stat, i) => (
                 <div
                   key={stat.label}
@@ -393,7 +182,7 @@ export default function HomePage() {
                       : ""
                   } ${i > 0 ? "md:pl-14" : ""} ${i < stats.length - 1 ? "md:pr-14" : ""}`}
                 >
-                  <span className={`font-heading text-display ${stat.color} font-normal`}>
+                  <span className={`font-heading text-display ${stat.color} font-normal`} style={{ fontFamily: "'New Look Supreme', Georgia, serif" }}>
                     {stat.value}
                   </span>
                   <span className="text-micro text-muted-foreground font-body font-medium uppercase tracking-[0.2em]">
@@ -410,7 +199,7 @@ export default function HomePage() {
           <div className="relative w-full min-h-[75vh]">
             <Image
               src="/images/esg-forest.jpg"
-              alt="Lush Green Forest"
+              alt="Aerial view of a lush green forest"
               fill
               className="object-cover"
               priority={false}
@@ -418,14 +207,14 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-foreground/45" />
             <div className="relative z-10 min-h-[75vh] px-6 md:px-12 pb-16 md:pb-24 max-w-[1440px] mx-auto items-start justify-end flex flex-col">
               <div className="max-w-3xl">
-                <h3 className="font-heading font-bold text-title-l text-white leading-snug" data-reveal>
+                <h2 className="font-heading font-bold text-title-l text-white leading-snug" data-reveal>
                   Kind to Our Core
-                </h3>
-                <p className="mt-6 text-body-m text-white/90 max-w-xl font-body" data-reveal data-reveal-delay="1">
+                </h2>
+                <p className="mt-6 text-body-m text-white/80 max-w-xl font-body" data-reveal data-reveal-delay="1">
                   We want to make as little impact as possible on our planet and we&apos;re committed to achieving this through transparent goals that balance demand for our products with our environmental and social responsibility. We call it being &quot;Kind to Our Core&quot;.
                 </p>
                 <a
-                  href="/esg"
+                  href="#"
                   className="mt-8 link-slide text-body-s font-body font-medium text-white hover:text-primary"
                   data-reveal
                   data-reveal-delay="2"
@@ -438,7 +227,7 @@ export default function HomePage() {
           </div>
 
           {/* 3 icon cards */}
-          <div className="bg-background py-12 md:py-16" ref={esgCardsRef}>
+          <div className="bg-background py-10 md:py-14" ref={esgCardsRef}>
             <div className="max-w-[1440px] mx-auto px-6 md:px-12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16">
                 {esgCards.map((card, i) => {
@@ -463,80 +252,72 @@ export default function HomePage() {
         </section>
 
         {/* ===== PEOPLE & INCLUSION ===== */}
-        <section className="bg-background py-16 md:py-24" ref={peopleRef}>
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center">
-              {/* Image */}
-              <div className="lg:col-span-6 relative aspect-[4/3] overflow-hidden" data-reveal="scale">
-                <Image
-                  src="/images/people-inclusion.jpg"
-                  alt="Our approach to equality, diversity and inclusivity in action"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Content */}
-              <div className="lg:col-span-5 lg:col-start-8 flex flex-col justify-center">
-                <h3 className="font-heading font-normal text-title-l text-foreground leading-tight" data-reveal="right">
-                  We&apos;re fostering an inspiring, inclusive culture built on a shared purpose and shared values.
-                </h3>
-                <p className="mt-6 text-body-m text-muted-foreground max-w-body font-body leading-relaxed" data-reveal="right" data-reveal-delay="1">
-                  With over 6,500 highly talented team members pulling together for our customers and each other, we&apos;re on a mission to spread that New Look feeling far and wide.
-                </p>
-                <a
-                  href="/about/people"
-                  className="mt-8 link-slide text-body-s font-body font-medium text-foreground hover:text-primary self-start"
-                  data-reveal="right"
-                  data-reveal-delay="2"
-                >
-                  Meet our people
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+        <section className="bg-background" ref={peopleRef}>
+          <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-10 lg:gap-x-16 px-6 md:px-12 lg:px-16 xl:px-24 py-10 md:py-14 items-center">
+            <div className="overflow-hidden relative aspect-[4/3]" data-reveal="scale">
+              <Image
+                src="/images/people-inclusion.jpg"
+                alt="Our approach to equality, diversity and inclusivity in action"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col justify-center pt-10 lg:pt-0">
+              <h2 className="font-heading font-normal text-title-l text-foreground leading-tight" data-reveal="right">
+                We&apos;re fostering an inspiring, inclusive culture built on a shared purpose and shared values.
+              </h2>
+              <p className="mt-6 text-body-m text-muted-foreground max-w-body font-body leading-relaxed" data-reveal="right" data-reveal-delay="1">
+                With over 6,500 highly talented team members pulling together for our customers and each other, we&apos;re on a mission to spread that New Look feeling far and wide.
+              </p>
+              <a
+                href="#"
+                className="mt-8 link-slide text-body-s font-body font-medium text-foreground hover:text-primary self-start"
+                data-reveal="right"
+                data-reveal-delay="2"
+              >
+                Meet our people
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
         </section>
 
         {/* ===== CAREERS ===== */}
-        <section id="careers" className="bg-background py-16 md:py-24 scroll-mt-20" ref={careersRef}>
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center">
-              {/* Content */}
-              <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
-                <h2 className="font-heading font-normal text-title-l text-foreground leading-tight" data-reveal="left">
-                  Careers at New Look
-                </h2>
-                <p className="mt-6 text-body-m text-muted-foreground max-w-body font-body leading-relaxed" data-reveal="left" data-reveal-delay="1">
-                  Channel that New Look feeling into a bold new career opportunity. Start your next adventure in retail, digital, distribution and beyond.
-                </p>
-                <a
-                  href="/careers"
-                  className="mt-8 link-slide text-body-s font-body font-medium text-foreground hover:text-primary self-start"
-                  data-reveal="left"
-                  data-reveal-delay="2"
-                >
-                  Join us
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-              {/* Image */}
-              <div className="lg:col-span-6 lg:col-start-7 relative aspect-[4/3] overflow-hidden order-1 lg:order-2" data-reveal="scale">
-                <Image
-                  src="/images/careers-portrait.jpg"
-                  alt="Working at New Look"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+        <section id="careers" className="bg-background scroll-mt-20" ref={careersRef}>
+          <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-10 lg:gap-x-16 px-6 md:px-12 lg:px-16 xl:px-24 py-10 md:py-14 items-center">
+            <div className="flex flex-col justify-center order-2 lg:order-1 pt-8 lg:pt-0">
+              <h2 className="font-heading font-normal text-title-l text-foreground leading-tight" data-reveal="left">
+                Careers at New Look
+              </h2>
+              <p className="mt-6 text-body-m text-muted-foreground max-w-body font-body leading-relaxed" data-reveal="left" data-reveal-delay="1">
+                Channel that New Look feeling into a bold new career opportunity. Start your next adventure in retail, digital, distribution and beyond.
+              </p>
+              <a
+                href="#"
+                className="mt-8 link-slide text-body-s font-body font-medium text-foreground hover:text-primary self-start"
+                data-reveal="left"
+                data-reveal-delay="2"
+              >
+                Join us
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+            <div className="overflow-hidden order-1 lg:order-2 relative aspect-[4/3]" data-reveal="scale">
+              <Image
+                src="/images/careers-portrait.jpg"
+                alt="Working at New Look"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </section>
 
         {/* ===== FINANCIALS & MEDIA SIGNPOSTS ===== */}
-        <section id="financials" className="bg-primary-foreground scroll-mt-20" ref={signpostsRef}>
+        <section id="financials" className="bg-nl-ice-white bg-primary-foreground scroll-mt-20" ref={signpostsRef}>
           <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2">
             {/* Financials */}
-            <a href="/financials" className="group block relative overflow-hidden" data-reveal data-reveal-delay="1">
+            <a href="#" className="group block relative overflow-hidden" data-reveal data-reveal-delay="1">
               <div className="overflow-hidden relative aspect-[4/3]">
                 <Image
                   src="/images/financials-card.jpg"
@@ -556,27 +337,25 @@ export default function HomePage() {
               </div>
             </a>
             {/* Media */}
-            <div id="media" className="scroll-mt-20">
-              <a href="/media" className="group block relative overflow-hidden" data-reveal data-reveal-delay="2">
-                <div className="overflow-hidden relative aspect-[4/3]">
-                  <Image
-                    src="/images/media-card.jpg"
-                    alt="Media"
-                    fill
-                    className="object-cover img-zoom"
-                  />
-                </div>
-                <div className="px-6 md:px-12 py-8 md:py-10 bg-background">
-                  <h2 className="font-heading font-normal text-title-m text-foreground">
-                    Media
-                  </h2>
-                  <span className="mt-4 link-slide text-body-s font-body font-medium text-foreground hover:text-primary">
-                    All the latest news
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </a>
-            </div>
+            <a id="media" href="#" className="group block relative overflow-hidden scroll-mt-20" data-reveal data-reveal-delay="2">
+              <div className="overflow-hidden relative aspect-[4/3]">
+                <Image
+                  src="/images/media-card.jpg"
+                  alt="Media"
+                  fill
+                  className="object-cover img-zoom"
+                />
+              </div>
+              <div className="px-6 md:px-12 py-8 md:py-10 bg-background">
+                <h2 className="font-heading font-normal text-title-m text-foreground">
+                  Media
+                </h2>
+                <span className="mt-4 link-slide text-body-s font-body font-medium text-foreground hover:text-primary">
+                  All the latest news
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </div>
+            </a>
           </div>
         </section>
       </main>
@@ -586,68 +365,110 @@ export default function HomePage() {
         <div className="border-t border-foreground/10" />
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-6">
-            {/* Nav links */}
-            <nav className="lg:col-span-6 flex flex-wrap gap-x-8 gap-y-3">
-              {footerNav.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-body-s text-foreground/70 hover:text-foreground transition-colors font-body"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-
-            {/* Shop link */}
+            {/* Brand + shop link */}
             <div className="lg:col-span-3 flex flex-col gap-6">
-              <p className="text-body-s text-foreground/70 font-body">
-                Shop online at{" "}
-                <a
-                  href="https://www.newlook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-foreground transition-colors"
-                >
-                  newlook.com
-                </a>
-              </p>
+              <svg width="120" height="24" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-10 md:h-12 w-auto text-foreground self-start">
+                <path d="M84.3501 118.337H89.1733V79.7514H84.3501V111.343L55.411 79.7514H50.5878V118.337H55.411V86.745L84.3501 118.337Z" fill="currentColor"/>
+                <path d="M218.676 137.63H211.2L183.226 159.093V137.63H178.402V176.215H183.226V164.881L193.354 156.922L213.612 176.215H220.605L197.213 154.029L218.676 137.63Z" fill="currentColor"/>
+                <path d="M145.846 137.147C134.994 137.147 126.071 146.07 126.071 156.922C126.071 167.775 134.994 176.697 145.846 176.697C156.698 176.697 165.621 167.775 165.621 156.922C165.621 145.829 156.698 137.147 145.846 137.147ZM161.039 156.681C161.039 164.881 154.286 171.633 146.087 171.633C137.888 171.633 131.135 164.881 131.135 156.681C131.135 148.482 137.888 141.729 146.087 141.729C154.286 141.729 161.039 148.482 161.039 156.681Z" fill="currentColor"/>
+                <path d="M95.6846 137.147C84.8325 137.147 75.9096 146.07 75.9096 156.922C75.9096 167.775 84.8325 176.697 95.6846 176.697C106.537 176.697 115.46 167.775 115.46 156.922C115.46 145.829 106.537 137.147 95.6846 137.147ZM110.637 156.681C110.637 164.881 103.884 171.633 95.6846 171.633C87.4852 171.633 80.7327 164.881 80.7327 156.681C80.7327 148.482 87.4852 141.729 95.6846 141.729C103.884 141.729 110.637 148.482 110.637 156.681Z" fill="currentColor"/>
+                <path d="M69.3983 171.392H41.1826V137.63H36.3594V176.215H69.3983V171.392Z" fill="currentColor"/>
+                <path d="M193.113 109.655C191.184 104.832 181.055 79.7514 181.055 79.7514H177.679L165.621 109.655L153.804 79.7514H148.74L164.174 118.337H167.55L179.367 88.4331L191.425 118.337H194.801L210.235 79.7514H205.171L193.113 109.655Z" fill="currentColor"/>
+                <path d="M110.395 101.456H133.064V96.6326H110.395V84.5746H138.611V79.7514H105.813V118.337H109.672H138.611V113.514H110.395V101.456Z" fill="currentColor"/>
+              </svg>
+              <a
+                href="https://www.newlook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-micro font-body font-medium uppercase tracking-[0.15em] text-foreground/60 hover:text-primary transition-colors duration-300 flex items-center gap-2"
+              >
+                Newlook.com Shop
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
             </div>
 
-            {/* Social icons */}
-            <div className="lg:col-span-3 flex gap-4 items-start">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="w-10 h-10 rounded-full border border-foreground/15 flex items-center justify-center text-foreground/60 hover:text-foreground hover:border-foreground/30 transition-colors duration-300"
-                  >
-                    <Icon className="w-4 h-4" />
+            {/* Company links */}
+            <div className="lg:col-span-3 lg:col-start-5">
+              <h3 className="text-micro font-body font-medium uppercase tracking-[0.2em] mb-6 text-foreground/40">
+                Company
+              </h3>
+              <ul className="flex flex-col gap-3">
+                {footerNav.map((link) => (
+                  <li key={link}>
+                    <a href="#" className="text-body-s font-body text-foreground/70 hover:text-primary transition-colors duration-300">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Download the App + Follow Us */}
+            <div className="lg:col-span-4 lg:col-start-8 flex flex-col gap-8">
+              <div>
+                <h3 className="text-micro font-body font-medium uppercase tracking-[0.2em] mb-6 text-foreground/40">
+                  Download the App
+                </h3>
+                <div className="flex items-center gap-3">
+                  <a href="#" className="inline-block transition-opacity hover:opacity-80">
+                    <div className="bg-foreground text-primary-foreground rounded-lg px-4 py-2.5 flex items-center gap-2.5 min-w-[140px]">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current flex-shrink-0">
+                        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.81 11.78 5.72 12.57 5.72C13.36 5.72 14.83 4.62 16.4 4.8C17.07 4.83 18.89 5.08 20.05 6.79C19.93 6.87 17.58 8.21 17.61 11.04C17.64 14.37 20.5 15.49 20.53 15.5C20.5 15.57 20.08 17.05 19.03 18.57L18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+                      </svg>
+                      <div className="flex flex-col">
+                        <span className="text-[9px] leading-tight font-body">Download on the</span>
+                        <span className="text-sm font-semibold leading-tight font-body">App Store</span>
+                      </div>
+                    </div>
                   </a>
-                );
-              })}
+                  <a href="#" className="inline-block transition-opacity hover:opacity-80">
+                    <div className="bg-foreground text-primary-foreground rounded-lg px-4 py-2.5 flex items-center gap-2.5 min-w-[140px]">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 flex-shrink-0">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" fill="#34A853"/>
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5Z" fill="#4285F4"/>
+                        <path d="M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" fill="#EA4335"/>
+                        <path d="M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12Z" fill="#FBBC05"/>
+                      </svg>
+                      <div className="flex flex-col">
+                        <span className="text-[9px] leading-tight font-body uppercase tracking-wider">Get it on</span>
+                        <span className="text-sm font-semibold leading-tight font-body">Google Play</span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-micro font-body font-medium uppercase tracking-[0.2em] mb-6 text-foreground/40">
+                  Follow Us
+                </h3>
+                <div className="flex items-center gap-5">
+                  {socialLinks.map(({ icon: Icon, label }) => (
+                    <a
+                      key={label}
+                      href="#"
+                      aria-label={label}
+                      className="text-foreground/50 hover:text-primary transition-colors duration-300"
+                    >
+                      <Icon className="w-5 h-5" />
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Legal */}
-          <div className="mt-16 pt-8 border-t border-foreground/10">
-            <p className="text-micro text-foreground/50 font-body mb-4">
-              New Look Retail Holdings Limited, a company registered in Jersey (No. 128640) is the holding company of New Look Retailers Limited
-            </p>
-            <div className="flex flex-wrap items-center gap-x-1 text-micro text-foreground/50 font-body">
-              <span>&copy; {new Date().getFullYear()} New Look Retailers Limited</span>
+          {/* Legal bar */}
+          <div className="mt-16 pt-8 border-t border-foreground/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-6">
               {footerLegal.map((link) => (
-                <span key={link.label}>
-                  <span className="mx-1">.</span>
-                  <a href={link.href} className="hover:text-foreground transition-colors">
-                    {link.label}
-                  </a>
-                </span>
+                <a key={link} href="#" className="text-micro font-body text-foreground/40 hover:text-primary transition-colors duration-300">
+                  {link}
+                </a>
               ))}
             </div>
+            <p className="text-micro text-foreground/30 font-body">
+              © {new Date().getFullYear()} New Look Retailers Limited
+            </p>
           </div>
         </div>
       </footer>
