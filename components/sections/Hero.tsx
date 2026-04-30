@@ -2,6 +2,7 @@
 
 import type { HeroSection } from "@/types/cms";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 interface HeroProps {
   data: HeroSection;
@@ -9,19 +10,31 @@ interface HeroProps {
 
 export function Hero({ data }: HeroProps) {
   const { headline, subheading, media, overlay_theme, alignment, cta } = data;
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // Ensure video plays on load
+      video.play().catch(() => {
+        // Autoplay was prevented, video will show first frame
+      });
+    }
+  }, []);
 
   return (
     <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
       {media.kind === "video" && media.video ? (
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover object-top"
-        >
-          <source src={media.video.url} type="video/mp4" />
-        </video>
+          src={media.video.url}
+        />
       ) : media.image ? (
         <Image
           src={media.image.url}
