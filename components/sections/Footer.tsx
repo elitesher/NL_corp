@@ -49,7 +49,7 @@ export function Footer({ data }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-6">
           {/* Brand + shop link */}
           <div className="lg:col-span-3 flex flex-col gap-6">
-            <NewLookLogo className="w-[50px] h-auto text-primary" />
+            <NewLookLogo className="w-[50px] h-auto text-foreground" />
             <Button
               variant="link"
               asChild

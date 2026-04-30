@@ -50,7 +50,7 @@ export function Navigation({ data }: NavigationProps) {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md">
       <nav className="max-w-[1440px] mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-[72px]">
         <a href="/" className="flex-shrink-0" aria-label="New Look Home">
-          <NewLookLogo className="w-[45px] md:w-[50px] h-auto text-primary" />
+          <NewLookLogo className="w-[45px] md:w-[50px] h-auto text-foreground" />
         </a>
 
         {/* Desktop Navigation */}
