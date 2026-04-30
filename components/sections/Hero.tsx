@@ -18,9 +18,12 @@ export function Hero({ data }: HeroProps) {
           muted
           loop
           playsInline
+          crossOrigin="anonymous"
+          poster={media.fallback_image?.url}
           className="absolute inset-0 w-full h-full object-cover object-top"
         >
           <source src={media.video.url} type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
       ) : media.image ? (
         <Image
