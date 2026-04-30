@@ -32,7 +32,7 @@ export function TextBlock({ data }: TextBlockProps) {
         )}
         {heading && (
           <h2 
-            className="font-heading font-normal text-title-l md:text-jumbo text-foreground leading-snug" 
+            className="font-heading font-bold text-title-l md:text-jumbo text-foreground leading-snug" 
             data-reveal
             dangerouslySetInnerHTML={{ __html: heading }}
           />

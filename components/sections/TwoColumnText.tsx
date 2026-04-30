@@ -24,7 +24,7 @@ export function TwoColumnText({ data }: TwoColumnTextProps) {
           <div className="lg:col-span-4" data-reveal="left">
             {left_column.heading && (
               <h2 
-                className="font-heading font-normal text-title-l md:text-jumbo text-foreground leading-[1.1]"
+                className="font-heading font-bold text-title-l md:text-jumbo text-foreground leading-[1.1]"
                 dangerouslySetInnerHTML={{ __html: left_column.heading }}
               />
             )}
@@ -38,7 +38,7 @@ export function TwoColumnText({ data }: TwoColumnTextProps) {
           <div className="lg:col-span-7 lg:col-start-6 flex flex-col justify-center" data-reveal="right">
             {right_column.heading && (
               <h3 
-                className="font-heading font-normal text-title-m text-foreground"
+                className="font-heading font-bold text-title-m text-foreground"
                 dangerouslySetInnerHTML={{ __html: right_column.heading }}
               />
             )}

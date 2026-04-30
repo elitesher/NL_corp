@@ -27,7 +27,7 @@ export function Stats({ data }: StatsProps) {
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10 text-center">
         {heading && (
           <h2 
-            className="font-heading font-normal text-title-l md:text-jumbo text-foreground leading-snug max-w-4xl mx-auto" 
+            className="font-heading font-bold text-title-l md:text-jumbo text-foreground leading-snug max-w-4xl mx-auto" 
             data-reveal
             dangerouslySetInnerHTML={{ __html: heading }}
           />
@@ -46,7 +46,7 @@ export function Stats({ data }: StatsProps) {
             >
               <CardContent className="flex flex-col items-center gap-4 p-0">
                 <span 
-                  className="font-heading text-display text-primary font-normal" 
+                  className="font-heading text-display text-primary font-bold" 
                   style={{ fontFamily: "'New Look Supreme', Georgia, serif" }}
                 >
                   {stat.value}

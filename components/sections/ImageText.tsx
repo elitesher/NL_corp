@@ -36,7 +36,7 @@ export function ImageText({ data }: ImageTextProps) {
         <div className={`flex flex-col justify-center pt-10 lg:pt-0 ${!isImageLeft ? "order-2 lg:order-1" : ""}`}>
           {content.heading && (
             <h2 
-              className="font-heading font-normal text-title-l text-foreground leading-tight" 
+              className="font-heading font-bold text-title-l text-foreground leading-tight" 
               data-reveal={revealDirection}
               dangerouslySetInnerHTML={{ __html: content.heading }}
             />

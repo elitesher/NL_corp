@@ -42,7 +42,7 @@ export function SignpostGrid({ data }: SignpostGridProps) {
                 </AspectRatio>
               </CardHeader>
               <CardContent className="px-6 md:px-12 py-8 md:py-10 bg-background">
-                <CardTitle className="font-heading font-normal text-title-m text-foreground">
+                <CardTitle className="font-heading font-bold text-title-m text-foreground">
                   {item.title}
                 </CardTitle>
               </CardContent>
