@@ -49,8 +49,8 @@ export const homepageData: Page = {
       media: {
         kind: "video",
         video: {
-          url: "/videos/hero-fashion.mp4",
-          alt: "Fashion video",
+          url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/NEW%20LOOK%20NEW%20AW24%20BANNER%20VIDEO%201536%20X%20384%20CORE-Yt5Ar83afmPZ8RstKxVpkvHT3KDkVE.mp4",
+          alt: "New Look AW24 Banner Video",
         },
         fallback_image: {
           url: "/images/hero-fallback.jpg",
