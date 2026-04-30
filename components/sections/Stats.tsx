@@ -51,7 +51,7 @@ export function Stats({ data }: StatsProps) {
                 >
                   {stat.value}
                 </span>
-                <span className="text-micro text-muted-foreground font-body font-medium uppercase tracking-[0.2em]">
+                <span className="text-body-s text-ds-primary-75 font-body font-medium uppercase tracking-[0.2em]">
                   {stat.label}
                 </span>
               </CardContent>

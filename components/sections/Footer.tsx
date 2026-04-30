@@ -53,7 +53,7 @@ export function Footer({ data }: FooterProps) {
             <Button
               variant="link"
               asChild
-              className="p-0 h-auto text-micro font-body font-medium uppercase tracking-[0.15em] text-foreground/60 hover:text-primary gap-2"
+              className="p-0 h-auto text-body-s font-body font-medium uppercase tracking-[0.15em] text-ds-primary-75 hover:text-primary gap-2"
             >
               <a href={shop_url} target="_blank" rel="noopener noreferrer">
                 Newlook.com Shop
@@ -64,7 +64,7 @@ export function Footer({ data }: FooterProps) {
 
           {/* Company links */}
           <div className="lg:col-span-3 lg:col-start-5">
-            <h3 className="text-micro font-body font-medium uppercase tracking-[0.2em] mb-6 text-foreground/40">
+            <h3 className="text-body-s font-body font-medium uppercase tracking-[0.2em] mb-6 text-ds-primary-50">
               Company
             </h3>
             <ul className="flex flex-col gap-3">
@@ -81,7 +81,7 @@ export function Footer({ data }: FooterProps) {
           {/* Download the App + Follow Us */}
           <div className="lg:col-span-4 lg:col-start-8 flex flex-col gap-8">
             <div>
-              <h3 className="text-micro font-body font-medium uppercase tracking-[0.2em] mb-6 text-foreground/40">
+              <h3 className="text-body-s font-body font-medium uppercase tracking-[0.2em] mb-6 text-ds-primary-50">
                 Download the App
               </h3>
               <div className="flex items-center gap-3">
@@ -117,7 +117,7 @@ export function Footer({ data }: FooterProps) {
               </div>
             </div>
             <div>
-              <h3 className="text-micro font-body font-medium uppercase tracking-[0.2em] mb-6 text-foreground/40">
+              <h3 className="text-body-s font-body font-medium uppercase tracking-[0.2em] mb-6 text-ds-primary-50">
                 Follow Us
               </h3>
               <div className="flex items-center gap-5">
@@ -148,12 +148,12 @@ export function Footer({ data }: FooterProps) {
         <div className="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex flex-wrap items-center gap-6">
             {legal_links.map((link) => (
-              <a key={link.label} href={link.href} className="text-micro font-body text-foreground/40 hover:text-primary transition-colors duration-300">
+              <a key={link.label} href={link.href} className="text-body-s font-body text-ds-primary-50 hover:text-primary transition-colors duration-300">
                 {link.label}
               </a>
             ))}
           </div>
-          <p className="text-micro text-foreground/30 font-body">
+          <p className="text-body-s text-ds-primary-50 font-body">
             © {new Date().getFullYear()} New Look Retailers Limited
           </p>
         </div>

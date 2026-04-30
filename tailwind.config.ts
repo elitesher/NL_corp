@@ -88,7 +88,19 @@ export default {
   			'nl-blossom': 'hsl(var(--blossom))',
   			'nl-fizzy': 'hsl(var(--fizzy-pink))',
   			'nl-transactional': 'hsl(var(--transactional))',
-  			'nl-sale': 'hsl(var(--sale-red))'
+  			'nl-sale': 'hsl(var(--sale-red))',
+  			'ds-primary': {
+  				100: 'hsl(var(--primary-100))',
+  				75: 'hsl(var(--primary-75))',
+  				50: 'hsl(var(--primary-50))',
+  				25: 'hsl(var(--primary-25))',
+  				10: 'hsl(var(--primary-10))'
+  			},
+  			'ds-secondary': {
+  				100: 'hsl(var(--secondary-100))',
+  				50: 'hsl(var(--secondary-50))',
+  				25: 'hsl(var(--secondary-25))'
+  			}
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

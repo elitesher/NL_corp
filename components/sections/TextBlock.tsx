@@ -26,7 +26,7 @@ export function TextBlock({ data }: TextBlockProps) {
     >
       <div className={`${maxWidthClasses[max_width]} mx-auto px-6 md:px-12 relative z-10`}>
         {eyebrow && (
-          <p className="text-micro font-body font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4" data-reveal>
+          <p className="text-body-s font-body font-medium uppercase tracking-[0.2em] text-ds-primary-75 mb-4" data-reveal>
             {eyebrow}
           </p>
         )}

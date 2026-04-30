@@ -6,9 +6,19 @@
 
 @layer base {
   :root {
+    /* Core DS Color Scale */
+    --primary-100: 0 0% 11%;           /* #1C1C1C */
+    --primary-75: 0 0% 46%;            /* #757575 */
+    --primary-50: 0 0% 60%;            /* #999999 */
+    --primary-25: 0 0% 78%;            /* #C6C6C6 */
+    --primary-10: 0 0% 87%;            /* #DDDDDD */
+    --secondary-100: 0 0% 89%;         /* #E4E4E4 */
+    --secondary-50: 0 0% 94%;          /* #EFEFEF */
+    --secondary-25: 0 0% 96%;          /* #F4F4F4 */
+
     /* Brand Palette */
     --background: 0 0% 100%;           /* #FFFFFF */
-    --foreground: 0 0% 11%;            /* #1C1C1C */
+    --foreground: 0 0% 11%;            /* #1C1C1C - Primary-100 */
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 11%;
@@ -22,8 +32,8 @@
     --secondary: 340 100% 98%;         /* #FFF6F9 Milkshake */
     --secondary-foreground: 0 0% 11%;
 
-    --muted: 30 15% 94%;               /* #F0EAE4 Ice White */
-    --muted-foreground: 0 0% 42%;      /* #6B6B6B */
+    --muted: 0 0% 96%;                 /* #F4F4F4 - Secondary-25 */
+    --muted-foreground: 0 0% 46%;      /* #757575 - Primary-75 */
 
     --accent: 336 91% 47%;             /* #E60B6B */
     --accent-foreground: 0 0% 100%;
@@ -31,20 +41,20 @@
     --destructive: 1 84% 51%;          /* #E8181B Sale red */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 0 0% 89%;                /* #E4E4E4 - Secondary-100 */
+    --input: 0 0% 89%;                 /* #E4E4E4 - Secondary-100 */
     --ring: 336 91% 47%;
 
     --radius: 9999px;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-foreground: 0 0% 11%;
+    --sidebar-primary: 0 0% 11%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 11%;
+    --sidebar-border: 0 0% 89%;
+    --sidebar-ring: 336 91% 47%;
 
     /* Custom brand tokens */
     --milkshake: 340 100% 98%;         /* #FFF6F9 */
