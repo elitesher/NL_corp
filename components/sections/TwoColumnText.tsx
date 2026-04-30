@@ -21,7 +21,7 @@ export function TwoColumnText({ data }: TwoColumnTextProps) {
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-20 items-start">
-          <div className="lg:col-span-4" data-reveal="left">
+          <div className="lg:col-span-4" data-reveal>
             {left_column.heading && (
               <h2 
                 className="font-heading font-bold text-title-l md:text-jumbo text-foreground leading-[1.1]"
@@ -35,7 +35,7 @@ export function TwoColumnText({ data }: TwoColumnTextProps) {
               />
             )}
           </div>
-          <div className="lg:col-span-7 lg:col-start-6 flex flex-col justify-center" data-reveal="right">
+          <div className="lg:col-span-7 lg:col-start-6 flex flex-col justify-center" data-reveal data-reveal-delay="1">
             {right_column.heading && (
               <h3 
                 className="font-heading font-bold text-title-m text-foreground"
