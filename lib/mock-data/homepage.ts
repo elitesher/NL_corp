@@ -44,8 +44,8 @@ export const homepageData: Page = {
     {
       id: "hero-main",
       type: "hero",
-      headline: "We're dedicated to inspiring<br /><em class=\"not-italic text-primary-foreground\">\"that New Look feeling\"</em>",
-      subheading: "We are the feel-good fashion brand making style accessible and fun so that everyone can experience that New Look feeling.",
+      headline: "We're dedicated to inspiring<br /><span class=\"italic\">\"that New Look feeling\"</span>",
+      subheading: "We are the feel-good fashion brand making style accessible and fun.",
       media: {
         kind: "video",
         video: {
