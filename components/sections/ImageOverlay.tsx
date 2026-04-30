@@ -4,6 +4,7 @@ import type { ImageOverlaySection } from "@/types/cms";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Button } from "@/components/ui/button";
 
 interface ImageOverlayProps {
   data: ImageOverlaySection;
@@ -44,15 +45,18 @@ export function ImageOverlay({ data }: ImageOverlayProps) {
               </p>
             )}
             {cta && (
-              <a
-                href={cta.url}
-                className="mt-8 link-slide text-body-s font-body font-medium text-white hover:text-primary"
+              <Button 
+                variant="link" 
+                asChild 
+                className="mt-8 p-0 h-auto gap-2 text-body-s font-body font-medium text-white hover:text-primary"
                 data-reveal
                 data-reveal-delay="2"
               >
-                {cta.label}
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
+                <a href={cta.url}>
+                  {cta.label}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </Button>
             )}
           </div>
         </div>

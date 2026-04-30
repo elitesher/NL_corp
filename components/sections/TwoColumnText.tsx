@@ -3,6 +3,7 @@
 import type { TwoColumnTextSection } from "@/types/cms";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Button } from "@/components/ui/button";
 
 interface TwoColumnTextProps {
   data: TwoColumnTextSection;
@@ -48,13 +49,16 @@ export function TwoColumnText({ data }: TwoColumnTextProps) {
               />
             )}
             {right_column.cta && (
-              <a
-                href={right_column.cta.url}
-                className="mt-10 link-slide text-body-s font-body font-medium text-foreground hover:text-primary self-start"
+              <Button 
+                variant="link" 
+                asChild 
+                className="mt-10 p-0 h-auto text-body-s font-body font-medium text-foreground hover:text-primary self-start gap-2"
               >
-                {right_column.cta.label}
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
+                <a href={right_column.cta.url}>
+                  {right_column.cta.label}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </Button>
             )}
           </div>
         </div>

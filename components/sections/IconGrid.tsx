@@ -4,6 +4,7 @@ import type { IconGridSection } from "@/types/cms";
 import Image from "next/image";
 import { Leaf, HandHeart, Globe, type LucideIcon } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 interface IconGridProps {
   data: IconGridSection;
@@ -46,32 +47,36 @@ export function IconGrid({ data }: IconGridProps) {
             const LucideIcon = getIconComponent(card.icon.url);
             
             return (
-              <div 
+              <Card 
                 key={card.title} 
-                className="flex flex-col" 
+                className="border-none shadow-none bg-transparent" 
                 data-reveal 
                 data-reveal-delay={String(i + 1)}
               >
-                <div className="w-10 h-10 rounded-full border border-foreground/15 flex items-center justify-center mb-6 overflow-hidden">
-                  {LucideIcon ? (
-                    <LucideIcon className="w-4 h-4 text-foreground" strokeWidth={1.5} />
-                  ) : (
-                    <Image
-                      src={card.icon.url}
-                      alt={card.icon.alt || card.title}
-                      width={16}
-                      height={16}
-                      className="w-4 h-4"
-                    />
-                  )}
-                </div>
-                <h3 className="font-heading font-bold text-title-s text-foreground mb-3">
-                  {card.title}
-                </h3>
-                <p className="text-body-s text-muted-foreground leading-relaxed font-body">
-                  {card.description}
-                </p>
-              </div>
+                <CardHeader className="p-0 pb-3">
+                  <div className="w-10 h-10 rounded-full border border-foreground/15 flex items-center justify-center mb-6 overflow-hidden">
+                    {LucideIcon ? (
+                      <LucideIcon className="w-4 h-4 text-foreground" strokeWidth={1.5} />
+                    ) : (
+                      <Image
+                        src={card.icon.url}
+                        alt={card.icon.alt || card.title}
+                        width={16}
+                        height={16}
+                        className="w-4 h-4"
+                      />
+                    )}
+                  </div>
+                  <CardTitle className="font-heading font-bold text-title-s text-foreground">
+                    {card.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <CardDescription className="text-body-s text-muted-foreground leading-relaxed font-body">
+                    {card.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
             );
           })}
         </div>

@@ -3,6 +3,8 @@
 import type { FooterSection } from "@/types/cms";
 import { ArrowRight } from "lucide-react";
 import { FaLinkedinIn, FaTwitter, FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaTiktok } from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 interface FooterProps {
   data: FooterSection;
@@ -38,21 +40,22 @@ export function Footer({ data }: FooterProps) {
 
   return (
     <footer className="bg-muted">
-      <div className="border-t border-foreground/10" />
+      <Separator className="bg-foreground/10" />
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-6">
           {/* Brand + shop link */}
           <div className="lg:col-span-3 flex flex-col gap-6">
             <NewLookLogo className="h-10 md:h-12 w-auto text-foreground self-start" />
-            <a
-              href={shop_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-micro font-body font-medium uppercase tracking-[0.15em] text-foreground/60 hover:text-primary transition-colors duration-300 flex items-center gap-2"
+            <Button
+              variant="link"
+              asChild
+              className="p-0 h-auto text-micro font-body font-medium uppercase tracking-[0.15em] text-foreground/60 hover:text-primary gap-2"
             >
-              Newlook.com Shop
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+              <a href={shop_url} target="_blank" rel="noopener noreferrer">
+                Newlook.com Shop
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </Button>
           </div>
 
           {/* Company links */}
@@ -118,14 +121,17 @@ export function Footer({ data }: FooterProps) {
                   const Icon = socialIconMap[platform.toLowerCase()];
                   if (!Icon) return null;
                   return (
-                    <a
+                    <Button
                       key={platform}
-                      href={url}
-                      aria-label={platform}
-                      className="text-foreground/50 hover:text-primary transition-colors duration-300"
+                      variant="ghost"
+                      size="icon"
+                      asChild
+                      className="h-auto w-auto p-0 text-foreground/50 hover:text-primary hover:bg-transparent"
                     >
-                      <Icon className="w-5 h-5" />
-                    </a>
+                      <a href={url} aria-label={platform}>
+                        <Icon className="w-5 h-5" />
+                      </a>
+                    </Button>
                   );
                 })}
               </div>
@@ -134,7 +140,8 @@ export function Footer({ data }: FooterProps) {
         </div>
 
         {/* Legal bar */}
-        <div className="mt-16 pt-8 border-t border-foreground/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <Separator className="mt-16 bg-foreground/10" />
+        <div className="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex flex-wrap items-center gap-6">
             {legal_links.map((link) => (
               <a key={link.label} href={link.href} className="text-micro font-body text-foreground/40 hover:text-primary transition-colors duration-300">

@@ -4,6 +4,9 @@ import type { SignpostGridSection } from "@/types/cms";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
 
 interface SignpostGridProps {
   data: SignpostGridSection;
@@ -21,31 +24,36 @@ export function SignpostGrid({ data }: SignpostGridProps) {
     >
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2">
         {items.map((item, i) => (
-          <a 
+          <Card 
             key={item.title} 
-            href={item.url} 
-            className="group block relative overflow-hidden" 
+            className="group relative overflow-hidden border-none rounded-none shadow-none" 
             data-reveal 
             data-reveal-delay={String(i + 1)}
           >
-            <div className="overflow-hidden relative aspect-[4/3]">
-              <Image
-                src={item.image.url}
-                alt={item.image.alt || item.title}
-                fill
-                className="object-cover img-zoom"
-              />
-            </div>
-            <div className="px-6 md:px-12 py-8 md:py-10 bg-background">
-              <h2 className="font-heading font-normal text-title-m text-foreground">
-                {item.title}
-              </h2>
-              <span className="mt-4 link-slide text-body-s font-body font-medium text-foreground hover:text-primary">
-                {item.link_text}
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-            </div>
-          </a>
+            <a href={item.url} className="block">
+              <CardHeader className="p-0">
+                <AspectRatio ratio={4/3} className="overflow-hidden">
+                  <Image
+                    src={item.image.url}
+                    alt={item.image.alt || item.title}
+                    fill
+                    className="object-cover img-zoom"
+                  />
+                </AspectRatio>
+              </CardHeader>
+              <CardContent className="px-6 md:px-12 py-8 md:py-10 bg-background">
+                <CardTitle className="font-heading font-normal text-title-m text-foreground">
+                  {item.title}
+                </CardTitle>
+              </CardContent>
+              <CardFooter className="px-6 md:px-12 pb-8 pt-0 bg-background">
+                <Button variant="link" className="p-0 h-auto gap-2 text-body-s font-body font-medium text-foreground hover:text-primary">
+                  {item.link_text}
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Button>
+              </CardFooter>
+            </a>
+          </Card>
         ))}
       </div>
     </section>

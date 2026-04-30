@@ -2,6 +2,7 @@
 
 import type { StatsSection } from "@/types/cms";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface StatsProps {
   data: StatsSection;
@@ -33,26 +34,28 @@ export function Stats({ data }: StatsProps) {
         )}
         <div className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto gap-0">
           {items.map((stat, i) => (
-            <div
+            <Card
               key={stat.label}
               data-reveal="counter"
               data-reveal-delay={String(i + 1)}
-              className={`flex flex-col items-center gap-4 py-10 md:py-0 ${
+              className={`flex flex-col items-center border-none shadow-none bg-transparent rounded-none py-10 md:py-0 ${
                 i < items.length - 1
                   ? "border-b md:border-b-0 md:border-r border-foreground/15"
                   : ""
               } ${i > 0 ? "md:pl-14" : ""} ${i < items.length - 1 ? "md:pr-14" : ""}`}
             >
-              <span 
-                className="font-heading text-display text-primary font-normal" 
-                style={{ fontFamily: "'New Look Supreme', Georgia, serif" }}
-              >
-                {stat.value}
-              </span>
-              <span className="text-micro text-muted-foreground font-body font-medium uppercase tracking-[0.2em]">
-                {stat.label}
-              </span>
-            </div>
+              <CardContent className="flex flex-col items-center gap-4 p-0">
+                <span 
+                  className="font-heading text-display text-primary font-normal" 
+                  style={{ fontFamily: "'New Look Supreme', Georgia, serif" }}
+                >
+                  {stat.value}
+                </span>
+                <span className="text-micro text-muted-foreground font-body font-medium uppercase tracking-[0.2em]">
+                  {stat.label}
+                </span>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
