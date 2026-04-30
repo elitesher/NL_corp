@@ -43,8 +43,8 @@ export function ImageText({ data }: ImageTextProps) {
           {content.body && (
             <div 
               className="mt-6 text-body-m text-muted-foreground max-w-body font-body leading-relaxed" 
-              data-reveal data-reveal-delay="1" 
-              data-reveal-delay="1"
+              data-reveal
+              data-reveal-delay="2"
               dangerouslySetInnerHTML={{ __html: content.body }}
             />
           )}
@@ -52,8 +52,8 @@ export function ImageText({ data }: ImageTextProps) {
             <a
               href={content.cta.url}
               className="mt-8 link-slide text-body-s font-body font-medium text-foreground hover:text-primary self-start"
-              data-reveal data-reveal-delay="1"
-              data-reveal-delay="2"
+              data-reveal
+              data-reveal-delay="3"
             >
               {content.cta.label}
               <ArrowRight className="w-3.5 h-3.5" />
